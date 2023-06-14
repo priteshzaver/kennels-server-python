@@ -1,7 +1,7 @@
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from views import get_all_animals, get_single_animal, create_animal, get_all_locations, get_single_location, create_location, get_all_employees, get_single_employee, get_all_customers, get_single_customer
+from views import get_all_animals, get_single_animal, create_animal, get_all_locations, get_single_location, create_location, get_all_employees, create_employee, get_single_employee, get_all_customers, get_single_customer
 
 
 
@@ -77,6 +77,9 @@ class HandleRequests(BaseHTTPRequestHandler):
         if resource == "locations":
             new_object = create_location(post_body)
 
+        if resource == "employees":
+            new_object = create_employee(post_body)
+            
         # Encode the new animal and send in response
         self.wfile.write(json.dumps(new_object).encode())
 
